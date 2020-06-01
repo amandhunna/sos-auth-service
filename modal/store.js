@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const required = true;
 
 const storeSchema = new Schema({
     storeType: { type: String, required },
@@ -11,6 +12,6 @@ const storeSchema = new Schema({
     number: { type: Array, required }
 })
 
-const Store = mongoose.model({ 'Store': storeSchema });
+const Store = mongoose.model('Store', storeSchema);
 
 module.exports = Store;

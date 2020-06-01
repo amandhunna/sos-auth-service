@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const required = true;
 
 const oderSchema = new Schema({
     deliveryAddress: { type: String, required },
@@ -16,6 +17,6 @@ const oderSchema = new Schema({
     note: { type: String }
 });
 
-const Order = mongoose.model({ 'Order': oderSchema });
+const Order = mongoose.model('Order', oderSchema);
 
 module.exports = Order;

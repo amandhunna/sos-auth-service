@@ -9,16 +9,16 @@ const handler = {
 };
 
 const logger = {
-    logDebug: function (...params) {
+    debug: function (...params) {
         console.debug(...params);
     },
-    logError: function (...params) {
+    error: function (...params) {
         console.error(...params);
     },
-    logInfo: function (...params) {
+    info: function (...params) {
         console.info(...params);
     },
-    logWarn: function (...params) {
+    warn: function (...params) {
         console.warn(...params);
     },
 }
