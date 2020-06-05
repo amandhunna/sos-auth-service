@@ -21,10 +21,11 @@ app.use(cors());
 
 // configure body parser
 app.use(bodyParser.json({ limit: '5mb' }));
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // register routes
-app.use('/api', router)
+app.use('/', router)
 
 
 app.listen(port);

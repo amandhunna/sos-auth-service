@@ -1,17 +1,18 @@
-const baseHelper = require('../util/logger');
+const baseHelper = require('../util/helper');
 const Order = require('../modal/order');
 const logger = require('../util/logger');
 
-class Order {
+class OrderService {
     async create(data) {
         try {
+            console.log("-----", data)
             const insertObj = new Order(data);
             const response = await insertObj.save();
             logger.info(`Order added: ${response._id}`);
-            return baseHelper.success(response._id);
+            return response._id;
         } catch (err) {
             logger.error(err);
-            return baseHelper.error(err.message);
+            throw Error(err.message);
         }
     }
 
@@ -22,7 +23,7 @@ class Order {
             return baseHelper.success(response);
         } catch (err) {
             logger.error(err);
-            return baseHelper.error(err.message);
+            throw Error(err.message);
         }
     }
 
@@ -52,4 +53,4 @@ class Order {
     }
 }
 
-module.exports = new BrandTemplateService();
+module.exports = new OrderService();
