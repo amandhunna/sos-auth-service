@@ -1,4 +1,3 @@
-const baseHelper = require('../util/helper');
 const Product = require('../modal/product');
 const logger = require('../util/logger');
 
@@ -12,6 +11,18 @@ class ProductService {
         } catch (err) {
             logger.error(err);
             throw Error(err.message);
+        }
+    }
+
+    async read(data) {
+        const projection = { __v : 0,};
+        try {
+            const response = await Product.find(data, projection).lean();
+            logger.info(`fetched product count: ${response.length}`);
+            return response;
+        } catch (err) {
+            logger.error(`error in read product service: ${err.message}`);
+            throw Error(err);
         }
     }
 

@@ -1,5 +1,4 @@
 const baseHelper = require('../util/helper');
-const logger = require('../util/logger');
 const userService = require('../service/user');
 const User = require('../modal/user');
 
@@ -11,6 +10,16 @@ class UserController {
         try {
             const data = req.body;
             const response = await userService.create(data)
+            return baseHelper.success(res, response)
+        } catch (error) {
+            return baseHelper.error(res, error)
+        }
+    }
+
+    async read(req, res) {
+        try {
+            const data = req.body;
+            const response = await userService.read(data)
             return baseHelper.success(res, response)
         } catch (error) {
             return baseHelper.error(res, error)

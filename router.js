@@ -20,21 +20,23 @@ router.use(verifyToken);
 
 // order
 router.post('/order', orderController.create);
-// router.get('/order', orderController.get);
+router.get('/order', orderController.read);
 
 // product
 router.post('/product', productController.create);
-// router.get('/product', productController.get);
+router.get('/product', productController.read);
 // router.get('/store', storeController.get);
 // router.get('/user', userController.get);
 
 
 // store
 router.post('/store', storeController.create);
-
+router.get('/store', storeController.read);
 // user
 router.post('/user', userController.create);
+router.get('/user', userController.read);
+
 module.exports = router;
 
 /* trim: true,
-        lowercase:true, */
+lowercase:true, */

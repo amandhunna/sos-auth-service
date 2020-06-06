@@ -1,5 +1,4 @@
 const baseHelper = require('../util/helper');
-const logger = require('../util/logger');
 const productService = require('../service/order');
 
 class ProductController {
@@ -14,7 +13,16 @@ class ProductController {
         } catch (error) {
             return baseHelper.error(res, error)
         }
+    }
 
+    async read(req, res) {
+        try {
+            const data = req.body;
+            const response = await productService.read(data)
+            return baseHelper.success(res, response)
+        } catch (error) {
+            return baseHelper.error(res, error)
+        }
     }
 }
 
