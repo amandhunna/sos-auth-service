@@ -1,25 +1,44 @@
 const jwt = require('jsonwebtoken');
 const baseHelper = require('../util/helper');
 const secretKey = "secretKey";
+const User = require('../modal/user');
 
 class Credentials {
 
-    login(req, res, next) {
-        const data = {
-            username: 'aman',
-            password: 'aman123'
-        }
+    async login(req, res) {
+        const { username } = req.body;
         const expiresIn = '30m'
+
+        const data = { username };
+
+        const user = await User.findOne({ username });
+        if (user === null) {
+            const error = {
+                error: "userNotFound",
+                message: "User not found."
+            }
+            return baseHelper.error(res, error)
+        }
+
+        if (!user.validPassword(req.body.password)) {
+
+            const error = {
+                error: "wrongPassword",
+                message: "Wrong password."
+            }
+            return baseHelper.error(res, error)
+        }
+
+
 
         jwt.sign({ user: data }, secretKey, { expiresIn }, (err, token) => {
             if (err) {
 
-                baseHelper.err(res, err)
+                baseHelper.error(res, err)
             } else {
-                baseHelper.success(res, token)
+                baseHelper.success(res, token, 201)
             }
         });
-        next();
     }
 }
 

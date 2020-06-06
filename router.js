@@ -3,8 +3,6 @@ const router = express.Router();
 
 const middleware = require('./middleware');
 
-// const loginController = require('./controller/Login');
-
 const orderController = require('./controller/order');
 const productController = require('./controller/product');
 const storeController = require('./controller/store');
@@ -12,11 +10,11 @@ const userController = require('./controller/user');
 
 const credentialController = require('./auth/credentials');
 
-const { verifyUser, trimmer, verifyToken } = middleware;
-router.use(trimmer, verifyUser)
-console.log('---------', credentialController)
+const { trimmer, verifyToken } = middleware;
+router.use(trimmer)
 
 router.post('/login', credentialController.login);
+router.post('/signUp', userController.signUp);
 
 router.use(verifyToken);
 

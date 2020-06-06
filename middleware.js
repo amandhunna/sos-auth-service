@@ -43,8 +43,6 @@ const middleware = {
             baseHelper.error(res, error, 403);
         }
     }
-
-
 }
 
 module.exports = middleware;
