@@ -17,6 +17,6 @@ const oderSchema = new Schema({
     note: { type: String }
 });
 
-const Order = mongoose.model('Order', oderSchema);
+const Order = mongoose.model('orders', oderSchema);
 
 module.exports = Order;

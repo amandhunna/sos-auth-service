@@ -13,3 +13,14 @@ const seed = [{
 ];
 
 module.exports = seed;
+/*
+{
+    "deleted": "false",
+    "price": "45",
+    "orderFrom": "randomString()",
+    "storeId": "randomString()",
+    "variant": "randomString()",
+    "imgUrl": "randomString()"
+}
+
+*/

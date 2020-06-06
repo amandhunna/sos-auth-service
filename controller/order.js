@@ -6,15 +6,6 @@ class OrderController {
     constructor() {
     }
 
-    async get(req, res) {
-        try {
-            logger.info('[[[[[[]]]]]]');
-        }
-        catch (err) {
-
-        }
-    };
-
     async create(req, res) {
         try {
             const data = req.body;

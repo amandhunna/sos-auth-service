@@ -3,14 +3,22 @@ const baseHelper = require('../util/helper');
 const { randomString } = baseHelper;
 
 const seed = [{
-    storeType: randomString(),
-    name: randomString(),
     address: randomString(),
-    storeId: randomString(),
     imgUrl: randomString(),
-    address: randomString(),
+    name: randomString(),
     number: [randomString()],
+    storeType: randomString(),
 }
 ];
 
 module.exports = seed;
+
+/*
+{
+   "address": "randomString",
+   "imgUrl": "randomString",
+   "name": "randomString",
+   "number": ["randomString"],
+   "storeType": "randomString"
+}
+*/

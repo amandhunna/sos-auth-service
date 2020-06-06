@@ -19,3 +19,20 @@ const seed = [{
 ];
 
 module.exports = seed;
+/*
+{
+    "deliveryAddress": "aU1QT",
+    "deliveryType": "BFbcB",
+    "deliveredTime": "r5t4ey",
+    "expectedDeliveryTime": "10d4r",
+    "note": "PNRMh",
+    "orderFrom": "o2jDW",
+    "orderItems": ["N5SCy"],
+    "orderTo": "keg5l",
+    "parentId": "VbTwD",
+    "rate": 5,
+    "rejectReason": "DJJGY",
+    "status": "spY86"
+}
+
+*/
