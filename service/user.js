@@ -19,8 +19,8 @@ class UserService {
         const projection = {
             hash: 0,
             salt: 0,
-            __v : 0,
-            
+            __v: 0,
+
         };
         try {
             const response = await User.find(data, projection).lean();
@@ -31,7 +31,17 @@ class UserService {
             throw Error(err);
         }
     }
-
+    async update(data) {
+        const { filter, update } = data;
+        try {
+            const response = await User.update(filter, update).lean();
+            logger.info(`fetched user count: ${response.length}`);
+            return response;
+        } catch (err) {
+            logger.error(`error in update user service: ${err.message}`);
+            throw Error(err);
+        }
+    }
 
 }
 

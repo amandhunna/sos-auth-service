@@ -24,6 +24,16 @@ class OrderController {
             return baseHelper.error(res, error)
         }
     }
+
+    async update(req, res) {
+        try {
+            const data = req.body;
+            const response = await orderService.update(data)
+            return baseHelper.success(res, response)
+        } catch (error) {
+            return baseHelper.error(res, error)
+        }
+    }
 }
 
 module.exports = new OrderController();
