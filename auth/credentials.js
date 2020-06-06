@@ -7,7 +7,7 @@ class Credentials {
 
     async login(req, res) {
         const { username } = req.body;
-        const expiresIn = '30m'
+        const expiresIn = '30d'
 
         const data = { username };
 
@@ -31,7 +31,7 @@ class Credentials {
 
 
 
-        jwt.sign({ user: data }, secretKey, { expiresIn }, (err, token) => {
+        jwt.sign({ data }, secretKey, { expiresIn }, (err, token) => {
             if (err) {
 
                 baseHelper.error(res, err)

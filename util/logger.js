@@ -13,7 +13,7 @@ const logger = {
         console.debug(...params);
     },
     error: function (...params) {
-        console.error(...params);
+        console.error(...params, ` at ${new Date()}`);
     },
     info: function (...params) {
         console.info(...params);

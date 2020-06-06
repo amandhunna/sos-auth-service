@@ -5,7 +5,7 @@ const required = true;
 const secret = "secret";
 
 const userSchema = new Schema({
-    username: { type: String, required }, 
+    username: { type: String, required, trim: true },
     address: { type: String, required },
     firstName: { type: String, required }, // id
     imgUrl: { type: String, required },

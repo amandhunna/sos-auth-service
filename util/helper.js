@@ -3,7 +3,7 @@ class Helper {
         return res.status(status).json({ status: 200, data: data });
     }
     error(res, error, status = 400) {
-        res.status(status).json({ status, error: error });
+        res.status(status).json({ status, error });
     }
 
     randomString(length) {

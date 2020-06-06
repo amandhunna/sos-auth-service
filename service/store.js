@@ -15,6 +15,29 @@ class StoreService {
         }
     }
 
+    async read(data) {
+        const projection = { __v: 0, };
+        try {
+            const response = await Store.find(data, projection).lean();
+            logger.info(`fetched store count: ${response.length}`);
+            return response;
+        } catch (err) {
+            logger.error(`error in read store service: ${err.message}`);
+            throw Error(err);
+        }
+    }
+
+    async update(data) {
+        const { filter, update } = data;
+        try {
+            const response = await Store.update(filter, update).lean();
+            logger.info(`fetched store count: ${response.length}`);
+            return response;
+        } catch (err) {
+            logger.error(`error in update store service: ${err.message}`);
+            throw Error(err);
+        }
+    }
 
 }
 

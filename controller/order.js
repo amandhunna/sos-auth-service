@@ -1,5 +1,4 @@
 const baseHelper = require('../util/helper');
-const logger = require('../util/logger');
 const orderService = require('../service/order');
 
 class OrderController {
@@ -14,7 +13,26 @@ class OrderController {
         } catch (error) {
             return baseHelper.error(res, error)
         }
+    }
 
+    async read(req, res) {
+        try {
+            const data = req.body;
+            const response = await orderService.read(data)
+            return baseHelper.success(res, response)
+        } catch (error) {
+            return baseHelper.error(res, error)
+        }
+    }
+
+    async update(req, res) {
+        try {
+            const data = req.body;
+            const response = await orderService.update(data)
+            return baseHelper.success(res, response)
+        } catch (error) {
+            return baseHelper.error(res, error)
+        }
     }
 }
 
