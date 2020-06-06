@@ -19,3 +19,15 @@ ref | link |
 ref| link|
 ---|---|
 1  |   [No-Link]()  |
+
+- Modal
+
+ref| controller | link|
+---|------------| --- |
+1  |  user |[Crypto-password](https://nodejs.org/api/crypto.html#crypto_crypto_pbkdf2sync_password_salt_iterations_keylen_digest) |
+
+- Controller
+
+ref| controller | link|
+---|------------| --- |
+1  |  user |[Crypto-password](https://www.geeksforgeeks.org/node-js-password-hashing-crypto-module)  |
