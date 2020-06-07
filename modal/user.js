@@ -6,14 +6,24 @@ const secret = "secret";
 
 const userSchema = new Schema({
     username: { type: String, required, trim: true },
-    address: { type: String, required },
-    firstName: { type: String, required }, // id
-    imgUrl: { type: String, required },
+    email: { type: String, required },
+    firstName: { type: String, required },
     lastName: { type: String, required },
-    number: { type: String, required },
-    storeId: { type: String, required },
-    type: { type: String, required },
-    hash: { type: String, required },
+
+    location: { type: String },
+
+    verified: { type: Boolean },
+    googleId: { type: String },
+
+    type: { type: String },
+
+    number: { type: String },
+    imageUrl: { type: String },
+    storeId: { type: String },
+
+
+    // password
+    hash: { type: String },
     salt: { type: String, required },
 })
 

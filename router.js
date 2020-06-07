@@ -13,6 +13,7 @@ const credentialController = require('./auth/credentials');
 const { trimmer, verifyToken } = middleware;
 router.use(trimmer)
 
+router.post('/googleLogin', credentialController.googleLogin);
 router.post('/login', credentialController.login);
 router.post('/signUp', userController.signUp);
 

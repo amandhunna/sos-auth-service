@@ -31,3 +31,10 @@ ref| controller | link|
 ref| controller | link|
 ---|------------| --- |
 1  |  user |[Crypto-password](https://www.geeksforgeeks.org/node-js-password-hashing-crypto-module)  |
+
+- auth 
+
+
+ref| controller | link|
+---|------------| --- |
+1  |  user |[Google auth](https://developers.google.com/identity/sign-in/web/backend-auth#using-a-google-api-client-library) |
