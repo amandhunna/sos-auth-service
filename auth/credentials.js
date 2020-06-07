@@ -25,9 +25,7 @@ class Credentials {
 
             return baseHelper.success(res, userId);
         } catch (error) {
-            console.log(error.stack)
             logger.error(`google login error: ${error}`);
-
             if (error.stack.includes('Invalid token signature')) {
                 return baseHelper.error(res, 'invalid_token_signature');
             }
