@@ -2,12 +2,15 @@ const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
 const baseHelper = require('../util/helper');
 const logger = require('../util/logger');
+const userService = require('../service/user')
 const secretKey = "secretKey";
 const User = require('../modal/user');
 
 class Credentials {
     async googleLogin(req, res) {
-        const { CLIENT_ID, tokenId } = req.body;
+        const { CLIENT_ID, tokenId, data } = req.body;
+        console.log(data)
+
         const client = new OAuth2Client(CLIENT_ID);
 
         // verify
@@ -22,12 +25,20 @@ class Credentials {
             const userId = payload['sub'];
             // If request specified a G Suite domain:
             // const domain = payload['hd'];
-
-            return baseHelper.success(res, userId);
+            if (userId) {
+                const savedUser = await userService.create(data)
+                console.log('-====', savedUser)
+                return baseHelper.success(res, savedUser);
+            }
+            return baseHelper.error(res, 'user_creation failed');
         } catch (error) {
             logger.error(`google login error: ${error}`);
             if (error.stack.includes('Invalid token signature')) {
                 return baseHelper.error(res, 'invalid_token_signature');
+            }
+
+            if (error.stack.includes('Token used too late')) {
+                return baseHelper.error(res, 'token_used_too_late');
             }
             return baseHelper.error(res, error.stack);
         }

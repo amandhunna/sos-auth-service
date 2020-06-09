@@ -5,7 +5,7 @@ const required = true;
 const secret = "secret";
 
 const userSchema = new Schema({
-    username: { type: String, required, trim: true },
+    name: { type: String, required, trim: true },
     email: { type: String, required },
     firstName: { type: String, required },
     lastName: { type: String, required },
@@ -24,7 +24,7 @@ const userSchema = new Schema({
 
     // password
     hash: { type: String },
-    salt: { type: String, required },
+    salt: { type: String },
 })
 
 // 1
