@@ -27,19 +27,23 @@ class Credentials {
             // const domain = payload['hd'];
             if (userId) {
                 const savedUser = await userService.create(data)
-                console.log('-====', savedUser)
                 return baseHelper.success(res, savedUser);
             }
             return baseHelper.error(res, 'user_creation failed');
         } catch (error) {
             logger.error(`google login error: ${error}`);
             if (error.stack.includes('Invalid token signature')) {
-                return baseHelper.error(res, 'invalid_token_signature');
+                return baseHelper.error(res, 'invalid_token_signature',403);
             }
 
             if (error.stack.includes('Token used too late')) {
-                return baseHelper.error(res, 'token_used_too_late');
+                return baseHelper.error(res, 'token_used_too_late',408);
             }
+            if (error.stack.includes('required_unique_email')) {
+                console.log(res)
+                return baseHelper.error(res, 'required_unique_email',409);
+            }
+
             return baseHelper.error(res, error.stack);
         }
 

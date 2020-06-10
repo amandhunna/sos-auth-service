@@ -10,8 +10,8 @@ class UserService {
             logger.info(`User added: ${response._id}`);
             return response._id;
         } catch (err) {
-            logger.error(err);
-            throw Error(err.message);
+            logger.error(`error in create user service: ${err.message}`);
+            throw Error(err);
         }
     }
 

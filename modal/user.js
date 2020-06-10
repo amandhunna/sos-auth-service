@@ -6,7 +6,7 @@ const secret = "secret";
 
 const userSchema = new Schema({
     name: { type: String, required, trim: true },
-    email: { type: String, required },
+    email: { type: String, required, unique: true },
     firstName: { type: String, required },
     lastName: { type: String, required },
 
@@ -44,8 +44,35 @@ userSchema.methods.validPassword = function (password) {
     return this.hash === hash;
 };
 
+userSchema.pre('save', true, function (next, done) {
+    const self = this;
+
+    if (self.email) {
+        mongoose.models.users.findOne({
+            email: self.email,
+
+        }, (err, user) => {
+            if (err) {
+                done(err);
+            } else if (user) {
+                self.invalidate('email', 'email must be unique');
+                done(new Error('required_unique_email'));
+            } else {
+                done();
+            }
+        });
+    } else {
+        done();
+    }
+
+    next();
+});
+
+
+userSchema.index({ email: 1, googleId: 1 }, { unique: true })
 
 const User = mongoose.model('users', userSchema);
+
 
 module.exports = User;
 
