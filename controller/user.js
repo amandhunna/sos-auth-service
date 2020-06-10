@@ -39,6 +39,10 @@ class UserController {
     async signUp(req, res) {
         try {
             const data = { ...req.body };
+            const reqField = ["email", "firstName", "isSeller", "lastName", "location", "name", "password", "phone"];
+
+            baseHelper.requiredFields(data, reqField);
+
             const user = new User();
             user.setPassword(req.body.password);
             const newData = { ...data, ...user._doc }
@@ -46,7 +50,7 @@ class UserController {
             const response = await userService.create(newData)
             return baseHelper.success(res, response)
         } catch (error) {
-            return baseHelper.error(res, error)
+            return baseHelper.error(res, error.stack)
         }
     }
 }
