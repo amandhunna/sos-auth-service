@@ -9,8 +9,6 @@ const User = require('../modal/user');
 class Credentials {
     async googleLogin(req, res) {
         const { CLIENT_ID, tokenId, data } = req.body;
-        console.log(data)
-
         const client = new OAuth2Client(CLIENT_ID);
 
         // verify
@@ -33,15 +31,14 @@ class Credentials {
         } catch (error) {
             logger.error(`google login error: ${error}`);
             if (error.stack.includes('Invalid token signature')) {
-                return baseHelper.error(res, 'invalid_token_signature',403);
+                return baseHelper.error(res, 'invalid_token_signature', 403);
             }
 
             if (error.stack.includes('Token used too late')) {
-                return baseHelper.error(res, 'token_used_too_late',408);
+                return baseHelper.error(res, 'token_used_too_late', 408);
             }
             if (error.stack.includes('required_unique_email')) {
-                console.log(res)
-                return baseHelper.error(res, 'required_unique_email',409);
+                return baseHelper.error(res, 'required_unique_email', 409);
             }
 
             return baseHelper.error(res, error.stack);
