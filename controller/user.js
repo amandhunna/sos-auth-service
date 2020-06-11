@@ -39,7 +39,17 @@ class UserController {
     async signUp(req, res) {
         try {
             const data = { ...req.body };
-            const reqField = ["email", "firstName", "isSeller", "lastName", "location", "name", "password", "phone"];
+            console.log(data);
+            const reqField = [
+                "email",
+                "firstName",
+                "isSeller",
+                "lastName",
+                "location",
+                "name",
+                "password",
+                "phone"
+            ];
 
             baseHelper.requiredFields(data, reqField);
 

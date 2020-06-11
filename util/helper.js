@@ -3,7 +3,6 @@ class Helper {
         return res.status(status).json({ status, data });
     }
     error(res, error, status = 400) {
-        console.log('-----', error)
         return res.json({ status, error });
     }
 
@@ -22,7 +21,7 @@ class Helper {
             if (data[item] === undefined) return item;
             return false;
         });
-        if (true || value.length) {
+        if (value.length) {
             throw new Error(`{ message: required fields ${value} are missing, data:${data}, error: required_field_missing }`);
         }
     };
