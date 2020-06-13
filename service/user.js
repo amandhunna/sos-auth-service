@@ -11,7 +11,7 @@ class UserService {
             return response._id;
         } catch (err) {
             logger.error(`error in create user service: ${err.message}`);
-            throw Error(err);
+            throw new Error(err.message);
         }
     }
 
@@ -28,7 +28,7 @@ class UserService {
             return response;
         } catch (err) {
             logger.error(`error in read user service: ${err.message}`);
-            throw Error(err);
+            throw new Error(err);
         }
     }
     async update(data) {
@@ -39,7 +39,7 @@ class UserService {
             return response;
         } catch (err) {
             logger.error(`error in update user service: ${err.message}`);
-            throw Error(err);
+            throw new Error(err);
         }
     }
 

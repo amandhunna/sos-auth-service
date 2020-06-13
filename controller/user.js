@@ -1,4 +1,5 @@
 const baseHelper = require('../util/helper');
+const logger = require('../util/logger');
 const userService = require('../service/user');
 const User = require('../modal/user');
 
@@ -58,9 +59,10 @@ class UserController {
             const newData = { ...data, ...user._doc }
             delete newData.password;
             const response = await userService.create(newData)
+            logger.info('user creation successful with id:', response);
             return baseHelper.success(res, response)
         } catch (error) {
-            return baseHelper.error(res, error.stack)
+            return baseHelper.error(res, error.message)
         }
     }
 }

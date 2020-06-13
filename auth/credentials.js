@@ -48,12 +48,12 @@ class Credentials {
 
 
     async login(req, res) {
-        const { username } = req.body;
+        const { email, password } = req.body;
         const expiresIn = '30d'
 
-        const data = { username };
+        const data = { email };
 
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ ...data });
         if (user === null) {
             const error = {
                 error: "userNotFound",
@@ -62,7 +62,7 @@ class Credentials {
             return baseHelper.error(res, error)
         }
 
-        if (!user.validPassword(req.body.password)) {
+        if (!user.validPassword(password)) {
 
             const error = {
                 error: "wrongPassword",
