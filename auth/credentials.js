@@ -71,9 +71,23 @@ class Credentials {
             return baseHelper.error(res, error)
         }
 
-
-
-        jwt.sign({ data }, secretKey, { expiresIn }, (err, token) => {
+        const {
+            lastName,
+            firstName,
+            name,
+            isProvider,
+        } = user;
+        
+        const jwtData = {
+            lastName,
+            firstName,
+            email,
+            name,
+            isProvider,
+            device: req.headers['user-agent'],
+            ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+        }
+        jwt.sign({ ...jwtData }, secretKey, { expiresIn }, (err, token) => {
             if (err) {
 
                 baseHelper.error(res, err)
