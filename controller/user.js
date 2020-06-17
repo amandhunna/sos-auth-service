@@ -44,7 +44,7 @@ class UserController {
             const reqField = [
                 "email",
                 "firstName",
-                "isSeller",
+                "isProvider",
                 "lastName",
                 "location",
                 "name",

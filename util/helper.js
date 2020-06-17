@@ -22,7 +22,13 @@ class Helper {
             return false;
         });
         if (value.length) {
-            throw new Error(`{ message: required fields ${value} are missing, data:${data}, error: required_field_missing }`);
+            const errorData = {
+                data: data,
+                error: "required_field_missing",
+                message: `Required field ${value} are missing`,
+            };
+
+            throw new Error(JSON.stringify(errorData));
         }
     };
 }

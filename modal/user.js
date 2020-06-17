@@ -15,7 +15,7 @@ const userSchema = new Schema({
     verified: { type: Boolean },
     googleId: { type: String },
 
-    type: { type: String },
+    isProvider: { type: String },
 
     number: { type: String },
     imageUrl: { type: String },
