@@ -1,10 +1,8 @@
 class Helper {
     success(res, data, status = 200) {
-       console.log('response')
         return res.status(status).json({ status, data });
     }
     error(res, error, status = 400) {
-        console.log('error',error)
         return res.status(status).json({ status, error });
     }
 

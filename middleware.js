@@ -25,13 +25,10 @@ const middleware = {
         const bearerHeader = req.headers['authorization']
         if (typeof bearerHeader !== 'undefined') {
             const bearer = bearerHeader.split(' ');
-            console.log("header", bearerHeader)
             const bearerToken = bearer[1];
             req.token = bearerToken.substring(1, bearerToken.length - 1);
-            console.log(req.token)
             jwt.verify(req.token, secretKey, (err, currentUser) => {
                 if (err) {
-                    console.log(err)
                     baseHelper.error(res, err.message, 403);
                 } else {
                     req.currentUser = currentUser
