@@ -17,11 +17,11 @@ class ProductController {
 
     async read(req, res) {
         try {
-            const data = req.body;
+            const data = req.body || {};
             const response = await productService.read(data)
-            return baseHelper.success(res, response)
+            return baseHelper.success(res, response);
         } catch (error) {
-            return baseHelper.error(res, error)
+            return baseHelper.error(res, error);
         }
     }
 

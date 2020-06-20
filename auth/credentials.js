@@ -77,7 +77,7 @@ class Credentials {
             name,
             isProvider,
         } = user;
-        
+
         const jwtData = {
             lastName,
             firstName,
@@ -92,6 +92,7 @@ class Credentials {
 
                 baseHelper.error(res, err)
             } else {
+                console.log(token)
                 baseHelper.success(res, token, 201)
             }
         });

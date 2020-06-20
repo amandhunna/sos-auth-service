@@ -21,23 +21,23 @@ const middleware = {
     verifyToken(req, res, next) {
         // Format of token
         // Authorization: Bearer <access_token>
-        //Get auth header value
+        // Get auth header value
         const bearerHeader = req.headers['authorization']
         if (typeof bearerHeader !== 'undefined') {
             const bearer = bearerHeader.split(' ');
-
+            console.log("header", bearerHeader)
             const bearerToken = bearer[1];
-            req.token = bearerToken;
-
+            req.token = bearerToken.substring(1, bearerToken.length - 1);
+            console.log(req.token)
             jwt.verify(req.token, secretKey, (err, currentUser) => {
                 if (err) {
                     console.log(err)
-                    baseHelper.error(res, err, 403);
+                    baseHelper.error(res, err.message, 403);
                 } else {
                     req.currentUser = currentUser
+                    next();
                 }
             })
-            next();
         } else {
             const error = "Token not found"
             baseHelper.error(res, error, 403);
