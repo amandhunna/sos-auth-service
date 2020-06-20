@@ -17,7 +17,8 @@ class ProductController {
 
     async read(req, res) {
         try {
-            const data = req.body || {};
+            const data = { ...req.body, ...req.params } || {};
+            console.log(data)
             const response = await productService.read(data)
             return baseHelper.success(res, response);
         } catch (error) {

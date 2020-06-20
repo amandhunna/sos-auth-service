@@ -27,6 +27,7 @@ router.put('/order', orderController.update);
 
 // product
 router.post('/product', productController.create);
+router.get('/product/:_id', productController.read);
 router.get('/product', productController.read);
 router.put('/product', productController.update);
 
