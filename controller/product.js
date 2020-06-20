@@ -1,5 +1,5 @@
 const baseHelper = require('../util/helper');
-const productService = require('../service/order');
+const productService = require('../service/product');
 
 class ProductController {
     constructor() {

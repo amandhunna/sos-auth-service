@@ -10,7 +10,8 @@ const userController = require('./controller/user');
 
 const credentialController = require('./auth/credentials');
 
-const { trimmer, verifyToken } = middleware;
+const { debugHelper, trimmer, verifyToken } = middleware;
+// router.use(debugHelper)
 router.use(trimmer)
 
 router.post('/googleLogin', credentialController.googleLogin);

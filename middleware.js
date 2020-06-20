@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 const baseHelper = require('./util/helper');
-
+const logger = require('./util/logger');
 const secretKey = "secretKey";
 
 const middleware = {
-    verifyUser(req, res, next) {
-        console.log("hi, ", req.headers['client-address']);
+    debugHelper(req, res, next) {
+        console.log("hi, ", req.body);
         next();
     },
 
@@ -26,10 +26,11 @@ const middleware = {
         if (typeof bearerHeader !== 'undefined') {
             const bearer = bearerHeader.split(' ');
             const bearerToken = bearer[1];
-            req.token = bearerToken.substring(1, bearerToken.length - 1);
+            req.token = bearerToken;
             jwt.verify(req.token, secretKey, (err, currentUser) => {
                 if (err) {
-                    baseHelper.error(res, err.message, 403);
+                    logger.error("verify token error", err);
+                    baseHelper.error(res, { status: 403, message: err.message }, 200);
                 } else {
                     req.currentUser = currentUser
                     next();
