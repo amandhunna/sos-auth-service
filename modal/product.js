@@ -1,14 +1,21 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const required = true;
+
+const variant = new Schema({
+    name: { type: String, required },
+    price: { type: Number, default: 0 }
+}, { _id: false });
+
 const productSchema = new Schema({
+
     deleted: { type: Boolean, default: false },
-    orderFrom: { type: String, required }, // id
-    price: { type: Number, required },
-    storeId: { type: String, required },
-    variant: { type: String },
-    imgUrl: { type: String, required }
-})
+    imgUrl: { type: String },
+
+    shopId: { type: String, required },
+    productId: { type: String, required },
+    variants: { type: [variant], required },
+});
 
 const Product = mongoose.model('products', productSchema);
 
