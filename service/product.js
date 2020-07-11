@@ -14,6 +14,17 @@ class ProductService {
         }
     }
 
+    async createMany(data) {
+        try {
+            const response = await Product.insertMany(data);
+            logger.info(`Order added: ${response._id}`);
+            return response._id;
+        } catch (err) {
+            logger.error(err);
+            throw Error(err.message);
+        }
+    }
+
     async read(data) {
         const projection = { __v: 0, };
         try {

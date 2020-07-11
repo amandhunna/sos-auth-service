@@ -8,7 +8,8 @@ class ProductController {
     async create(req, res) {
         try {
             const data = req.body;
-            const response = await productService.create(data)
+            const response = await productService.createMany(data);
+            // const response = await productService.create(data)
             return baseHelper.success(res, response)
         } catch (error) {
             return baseHelper.error(res, error)
